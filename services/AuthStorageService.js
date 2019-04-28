@@ -1,4 +1,4 @@
-import {AsyncStorage} from "react-native";
+import { AsyncStorage } from "react-native";
 import AuthService from './AuthService';
 
 export default class AuthStorageService {

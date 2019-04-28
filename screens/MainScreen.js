@@ -3,7 +3,10 @@ import { Text, View, Button } from 'react-native';
 
 class MainScreen extends Component {
   static navigationOptions = {
-    header: null
+    headerMode: 'none',
+    navigationOptions: {
+      headerVisible: false,
+    }
   }
 
   render() {
