@@ -2,7 +2,8 @@ import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import { Input, Button } from 'react-native-elements';
 import Icon from 'react-native-vector-icons/FontAwesome';
-import { COMPANY_NAME, COMPANY_LINE } from 'react-native-dotenv'
+import { COMPANY_NAME, COMPANY_LINE } from 'react-native-dotenv';
+import AuthService from '../services/AuthService';
 
 
 class LoginScreen extends React.Component {
@@ -14,7 +15,9 @@ class LoginScreen extends React.Component {
     super(props);
     this.state = {
       email: '',
-      password: ''
+      password: '',
+      loading: false,
+      errors: []
     }
   }
 
@@ -25,6 +28,7 @@ class LoginScreen extends React.Component {
           <Text style={styles.title}>{COMPANY_NAME}</Text>
           <Text>{COMPANY_LINE}</Text>
         </View>
+        {this.renderErrors()}
         <View>
           <Input
             style={styles.textInput}
@@ -37,6 +41,9 @@ class LoginScreen extends React.Component {
                 color='black'
               />
             }
+            editable={!this.state.loading}
+            value={this.state.email}
+            onChangeText={(email) => { this.setState({email}) }}
           />
         </View>
         <View>
@@ -52,36 +59,66 @@ class LoginScreen extends React.Component {
                 color='black'
               />
             }
+            editable={!this.state.loading}
+            value={this.state.password}
+            onChangeText={(password) => { this.setState({password}) }}
           />
         </View>
         <View style={styles.loginButton}>
           <Button
-            onPress={this.onLogin}
+            onPress={this.onLogin.bind(this)}
             title="Login"
             color="#841584"
             accessibilityLabel="Authenticate user"
+            loading={this.state.loading}
           />
         </View>
       </View>
     )
   }
 
+  renderErrors() {
+    const self = this;
+    if (self.state.errors.length) {
+      return (
+        <View style={styles.errorMessage}>
+          {
+            self.state.errors.map((error, key) => {
+              return (
+                <Text key={`error_${key}`}>{error}</Text>
+              )
+            })
+          }
+        </View>
+      )
+    } else {
+      return null
+    }
+  }
+
   onLogin() {
-
+    const self = this;
+    const service = new AuthService(
+      self.state.email,
+      self.state.password
+    );
+    self.setState({
+      loading: true
+    }, () => {
+      service.authenticate((resp) => {
+        self.setState({ loading: false }, () => {
+          if (resp.errors) {
+            self.setState({ errors: resp.errors });
+          } else {
+            self.onSuccessLogin();
+          }
+        });
+      });
+    });
   }
 
-  setEmail(e) {
-    this.setFieldValue(e.target.value, 'email');
-  }
-
-  setPassword(e) {
-    this.setFieldValue(e.target.value, 'password');
-  }
-
-  setFieldValue(value, field) {
-    const state = this.state;
-    state[field] = value;
-    this.setState(state);
+  onSuccessLogin() {
+    this.props.navigation.navigate('MainScreen');
   }
 }
 
@@ -92,7 +129,7 @@ const styles = StyleSheet.create({
   },
   screenTitles: {
     alignItems: 'center',
-    marginBottom: 30
+    marginBottom: 10
   },
   title: {
     fontSize: 24
@@ -101,7 +138,12 @@ const styles = StyleSheet.create({
     marginTop: 20,
     marginLeft: 10,
     marginRight: 10
+  },
+  errorMessage: {
+    alignItems: 'center',
+    marginBottom: 10,
+    color: '#940A07'
   }
-})
+});
 
 export default LoginScreen;
