@@ -98,14 +98,11 @@ class LoginScreen extends React.Component {
 
   onLogin() {
     const self = this;
-    const service = new AuthService(
-      self.state.email,
-      self.state.password
-    );
+    const service = new AuthService();
     self.setState({
       loading: true
     }, () => {
-      service.authenticate((resp) => {
+      service.authenticate(self.state.email, self.state.password, (resp) => {
         self.setState({ loading: false }, () => {
           if (resp.errors) {
             self.setState({ errors: resp.errors });
@@ -118,7 +115,7 @@ class LoginScreen extends React.Component {
   }
 
   onSuccessLogin() {
-    this.props.navigation.navigate('MainScreen');
+    this.props.navigation.navigate('WelcomeScreen');
   }
 }
 

@@ -1,19 +1,16 @@
 import React, { Component } from 'react';
 import { Text, View, Button } from 'react-native';
 
-class MainScreen extends Component {
+class WelcomeScreen extends Component {
   static navigationOptions = {
-    headerMode: 'none',
-    navigationOptions: {
-      headerVisible: false,
-    }
-  }
+    header: null,
+  };
 
   render() {
     const { navigate } = this.props.navigation;
     return (
       <View>
-        <Text>Main Screen</Text>
+        <Text>Welcome Screen</Text>
         <Button
           title="Point of Sales"
           onPress={() => navigate('PointOfSales', {})}
@@ -23,4 +20,4 @@ class MainScreen extends Component {
   }
 }
 
-export default MainScreen;
+export default WelcomeScreen;
