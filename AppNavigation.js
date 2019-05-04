@@ -6,8 +6,8 @@ import AuthProtector from './components/AuthProtector';
 
 export default createAppContainer(
   createStackNavigator({
+    PointOfSales: { screen: PointOfSales },
     WelcomeScreen: { screen: AuthProtector(WelcomeScreen) },
-    PointOfSales: { screen: AuthProtector(PointOfSales) },
     LoginScreen: { screen: LoginScreen },
   })
 );

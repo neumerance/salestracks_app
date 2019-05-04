@@ -3,7 +3,7 @@ import { Text, View, Button } from 'react-native';
 
 class WelcomeScreen extends Component {
   static navigationOptions = {
-    header: null,
+    header: null
   };
 
   render() {
