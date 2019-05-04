@@ -1,0 +1,86 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`LoginScreen renders correctly 1`] = `
+<View
+  style={
+    Object {
+      "flex": 1,
+      "justifyContent": "center",
+    }
+  }
+>
+  <View
+    style={
+      Object {
+        "alignItems": "center",
+        "marginBottom": 10,
+      }
+    }
+  >
+    <Text
+      style={
+        Object {
+          "fontSize": 24,
+        }
+      }
+    >
+      Salestracks
+    </Text>
+    <Text>
+      We move business faster
+    </Text>
+  </View>
+  <View>
+    <ForwardRef(Themed.Input)
+      editable={true}
+      leftIcon={
+        <Icon
+          allowFontScaling={false}
+          color="black"
+          name="user"
+          size={24}
+        />
+      }
+      onChangeText={[Function]}
+      placeholder="Email"
+      shake={true}
+      value=""
+    />
+  </View>
+  <View>
+    <ForwardRef(Themed.Input)
+      editable={true}
+      leftIcon={
+        <Icon
+          allowFontScaling={false}
+          color="black"
+          name="key"
+          size={24}
+        />
+      }
+      onChangeText={[Function]}
+      placeholder="Password"
+      secureTextEntry={true}
+      shake={true}
+      value=""
+    />
+  </View>
+  <View
+    style={
+      Object {
+        "marginLeft": 10,
+        "marginRight": 10,
+        "marginTop": 20,
+      }
+    }
+  >
+    <ForwardRef(Themed.Button)
+      accessibilityLabel="Authenticate user"
+      color="#841584"
+      loading={false}
+      onPress={[Function]}
+      title="Login"
+    />
+  </View>
+</View>
+`;
