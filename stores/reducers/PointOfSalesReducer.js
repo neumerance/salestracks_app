@@ -1,11 +1,34 @@
-import { combineReducers } from 'redux';
-
 const INITIAL_STATE = {
-  products: [],
+  products: [
+    {
+      name: 'Roasted chicken',
+      description: '',
+      slug: 'roasted-chicken',
+      image: 'https://via.placeholder.com/150'
+    },
+    {
+      name: 'Pork belly',
+      description: '',
+      slug: 'pork-belly',
+      image: 'https://via.placeholder.com/150'
+    },
+    {
+      name: 'Chilly sauce',
+      description: '',
+      slug: 'chilly-sauce',
+      image: 'https://via.placeholder.com/150'
+    },
+    {
+      name: 'Chilly sauce',
+      description: '',
+      slug: 'chilly-sauce',
+      image: 'https://via.placeholder.com/150'
+    }
+  ],
   currentSales: []
 };
 
-const PointOfSales = (state = INITIAL_STATE, action) => {
+const PointOfSalesReducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
     case 'SET_PRODUCTS':
       return {
@@ -22,6 +45,4 @@ const PointOfSales = (state = INITIAL_STATE, action) => {
   }
 };
 
-export default combineReducers({
-  pointOfSales: PointOfSales,
-});
+export default PointOfSalesReducer;
