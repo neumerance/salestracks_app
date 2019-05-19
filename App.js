@@ -3,8 +3,7 @@ import AppNavigation from './AppNavigation';
 import { Provider } from 'react-redux';
 import AppStore from './stores/AppStore';
 
-type Props = {};
-export default class App extends Component<Props> {
+export default class App extends Component {
   render() {
     return (
       <Provider store={AppStore}>

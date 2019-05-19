@@ -1,21 +1,29 @@
 import React, { Component } from 'react';
+import { View, StyleSheet } from 'react-native';
 import ProductTiles from '../components/sales/ProductTiles'
+import { Col, Row, Grid } from "react-native-easy-grid";
+import CheckOutCtn from '../components/sales/CheckOutCtn';
 import { connect } from 'react-redux';
-import PointOfSalesActions from '../actions/PointOfSalesActions';
 
 class PointOfSales extends Component {
   render() {
     return (
-      <ProductTiles />
+      <Grid style={styles.screen}>
+        <Row size={75}>
+          <ProductTiles />
+        </Row>
+        <Row size={25}>
+          <CheckOutCtn />
+        </Row>
+      </Grid>
     );
   }
 }
 
-const mapStateToProps = (state) => {
-  const { products } = state
-  return { products }
-};
+const styles = StyleSheet.create({
+  screen: {
+    backgroundColor: '#E9EDF1'
+  }
+});
 
-const mapDispatchToProps = (dispatch) => { return new PointOfSalesActions(dispatch) }
-
-export default connect(mapStateToProps, mapDispatchToProps)(PointOfSales);
+export default PointOfSales;

@@ -23,9 +23,33 @@ const INITIAL_STATE = {
       description: '',
       slug: 'chilly-sauce',
       image: 'https://via.placeholder.com/150'
+    },
+    {
+      name: 'Roasted chicken 2',
+      description: '',
+      slug: 'roasted-chicken-2',
+      image: 'https://via.placeholder.com/150'
+    },
+    {
+      name: 'Pork belly 2',
+      description: '',
+      slug: 'pork-belly-2',
+      image: 'https://via.placeholder.com/150'
+    },
+    {
+      name: 'Chilly sauce 2',
+      description: '',
+      slug: 'chilly-sauce-2',
+      image: 'https://via.placeholder.com/150'
+    },
+    {
+      name: 'Chilly sauce 2',
+      description: '',
+      slug: 'chilly-sauce-2',
+      image: 'https://via.placeholder.com/150'
     }
   ],
-  currentSales: []
+  unpaidItems: []
 };
 
 const PointOfSalesReducer = (state = INITIAL_STATE, action) => {
@@ -35,10 +59,10 @@ const PointOfSalesReducer = (state = INITIAL_STATE, action) => {
         ...state,
         products: action.payload
       }
-    case 'SET_CURRENT_SALES':
+    case 'SET_UNPAID_ITEMS':
       return {
         ...state,
-        currentSales: action.payload
+        unpaidItems: action.payload
       }
     default:
       return state
